@@ -59,7 +59,7 @@ router.post('sing-up', (req, res, next) => {
   });
 })
 
-app.post(
+router.post(
   "/log-in",
   passport.authenticate("local", {   
     successRedirect: "/",
@@ -68,7 +68,7 @@ app.post(
 );
 
 
-app.get("/log-out", (req, res) => {
+router.get("/log-out", (req, res) => {
   req.logout();
   res.json('Logged Out Successfully')
   res.redirect("/");
