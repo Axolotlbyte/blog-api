@@ -27,7 +27,7 @@ router.post(
         if(!errors,isEmpty()) {
             return res.status(400),json({error: error.array() });
         }
-
+    
         try {
             const newArticle = new Article({
                 user: req.user.id,

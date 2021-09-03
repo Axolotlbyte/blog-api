@@ -18,14 +18,15 @@ var ArticleSchema = new Schema(
         },
         content: {
             type: String, 
-            required: true, minLength: 3,
+            required: true, 
+            minLength: 3,
             maxLength: 1000
         },
         date: {
             type: Date,
             default: Date.now
         },
-        comment: [ {
+        comment: [{
             name: {
               type: String,
               required: true,
