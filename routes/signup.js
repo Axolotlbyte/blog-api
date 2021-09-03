@@ -21,6 +21,10 @@ router.post("/", async (req, res) => {
             password,
         });
 
+        if(req.body.isAdmin){
+            user.isAdmin = req.body.isAdmin;
+        }
+
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
         
