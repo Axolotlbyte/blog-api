@@ -9,6 +9,8 @@ require("dotenv").config();
 router.post("/", async (req, res) => {
     try{
         const { username, password } = req.body;
+        console.log({username, password})
+        console.log(req.body)
         let user = await User.findOne({ username });
     
         if (!user) {
