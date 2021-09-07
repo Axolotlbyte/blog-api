@@ -149,13 +149,14 @@ router.post(
       }
       try {
         const article = await Article.findById(req.params.id);
-  
+        console.log(article)
+
         const comment = {
           name: req.body.name,
           text: req.body.text,
         };
   
-        article.comments.push(comment);
+        article.comment.push(comment);
   
         await article.save();
   
