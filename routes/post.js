@@ -122,7 +122,7 @@ router.delete("/:id", auth, checkAdmin, async (req, res) => {
     try {
         const article = await Article.findById(req.params.id);
 
-        if (!post) {
+        if (!article) {
             res.status(404).json({ errors: [{ msg : "Article not found" }] });
         }
 
@@ -172,8 +172,7 @@ router.post(
 router.delete("/:id/comments/:comment_id", auth, async (req, res) => {
     try {
       const article = await Article.findById(req.params.id);
-  
-      const comment = post.comments.find(
+      const comment = article.comment.find(
         (comment) => comment._id.toString() === req.params.comment_id
       );
   
@@ -181,7 +180,7 @@ router.delete("/:id/comments/:comment_id", auth, async (req, res) => {
         return res.status(404).json({ msg: "Comment not found" });
       }
   
-      await comment.delete();
+      await comment.remove();
   
       res.json(article.comments);
     } catch (err) {
