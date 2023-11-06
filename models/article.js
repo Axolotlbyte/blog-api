@@ -7,7 +7,7 @@ var ArticleSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    required: false,
   },
   title: {
     type: String,
@@ -15,20 +15,27 @@ var ArticleSchema = new Schema({
     minLength: 3,
     maxLength: 100,
   },
+  subtitle: {
+    type: String,
+    required: false,
+    // minLength: 3,
+    // maxLength: 100,
+  },
   image: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
     type: String,
     required: true,
-    minLength: 3,
-    maxLength: 1000,
+    // minLength: 3,
+    // maxLength: 1000,
   },
   category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-    required: true,
+    // type: Schema.Types.ObjectId,
+    // ref: "Category",
+    type: String,
+    required: false,
   },
   date: {
     type: Date,

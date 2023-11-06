@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/login", loginRouter);
-app.use("/api/article", articleRouter);
+app.use("/api/post", articleRouter);
 app.use("/api/signup", signupRouter);
 app.use("/api/category", categoryRouter);
 

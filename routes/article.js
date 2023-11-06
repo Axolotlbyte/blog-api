@@ -13,8 +13,8 @@ require("dotenv").config();
 router.post(
   "/",
   [
-    auth,
-    checkAdmin,
+    // auth,
+    // checkAdmin,
     [
       check("title", "Enter a title for your post").trim().not().isEmpty(),
       check("content", "Post body must not be empty").trim().not().isEmpty(),
@@ -25,18 +25,21 @@ router.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400), json({ error: error.array() });
+      console.log(errors)
+      console.log(req.body)
+      return res.status(400).json({ error: errors.array() });
     }
 
-    const { title, content, image, category } = req.body;
+    const { title, subtitle, content, image, category } = req.body;
 
     try {
       const newArticle = new Article({
-        user: req.user.id,
+        // user: req.user.id,
         title: title,
         content: content,
         image: image,
         category: category,
+        subtitle,
       });
 
       const article = await newArticle.save();
@@ -53,8 +56,8 @@ router.post(
 router.put(
   "/:id",
   [
-    auth,
-    checkAdmin,
+    // auth,
+    // checkAdmin,
     [
       check("title", "Enter a title for your post").trim().not().isEmpty(),
       check("content", "Post body must not be empty").trim().not().isEmpty(),
@@ -99,8 +102,8 @@ router.get("/", async (req, res) => {
   try {
     if (req.query.sort) {
       const articles = await Article.find({ category: req.query.sort })
-        .populate("user")
-        .populate("category")
+        // .populate("user")
+        // .populate("category")
         .populate({
           path: "comment",
           populate: {
@@ -118,8 +121,8 @@ router.get("/", async (req, res) => {
       return;
     }
     const articles = await Article.find()
-      .populate("category")
-      .populate("user")
+      // .populate("category")
+      // .populate("user")
       .populate({
         path: "comment",
         populate: {
@@ -142,8 +145,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const article = await Article.findById(req.params.id)
-      .populate("category")
-      .populate("user")
+      // .populate("category")
+      // .populate("user")
       .populate({
         path: "comment",
         populate: {
