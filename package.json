@@ -6,6 +6,9 @@
     "start": "node app.js",
     "dev": "nodemon app.js --watch"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "async": "^3.2.1",
     "bcryptjs": "^2.4.3",
