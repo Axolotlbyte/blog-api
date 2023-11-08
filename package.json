@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./api/index.js",
-    "dev": "nodemon app.js --watch"
+    "dev": "nodemon index.js --watch"
   },
   "engines": {
     "node": "18.x"
