@@ -10,6 +10,8 @@ const articleRouter = require("./routes/article");
 const signupRouter = require("./routes/signup");
 const categoryRouter = require("./routes/category");
 
+const indexRouter = require("./routes/index");
+
 const app = express();
 
 connectDB();
@@ -19,6 +21,8 @@ app.use(express.json({ extended: true }));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/api", indexRouter);
 
 app.use("/api/login", loginRouter);
 app.use("/api/post", articleRouter);
